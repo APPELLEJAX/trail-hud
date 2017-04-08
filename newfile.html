@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      html, body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map{
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"/>
+    <script>
+      var map;
+      var openWeatherMapKey = "0a3275b14aa9bb2ad136e94fd73dff51";
+      function init(){
+        var mapOptions = {
+          zoom: 4,
+          center: new google.maps.LatLng(0,0);
+        };
+        map = new google.maps.Map(document.getElementById('map', mapOptions));
+        google.maps.event.addListener(map, 'idle', checkDataRequested);
+        map.data.addListener('click', function(event){
+          infowindow.setContent();
+        });
+      }
+
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

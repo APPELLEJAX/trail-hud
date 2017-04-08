@@ -15,6 +15,35 @@
       width: 100%;
       height: 100%;
     }
+    #weather-container{
+      position: fixed;
+      left: 20px;
+      bottom: 25px;
+      height: 200px;
+      width: 200px;
+
+      align-content: center;
+
+      color: #eeffee;
+      font-size: 20pt;
+      text-align: center;
+      text-shadow: #000000;
+
+      background-color: rgba(100, 120, 100, .5);
+    }
+    #weather-container img{
+      margin-top: 10px;
+      height: 100px;
+      width: 100px;
+    }
+    #search-bar{
+      position: fixed;
+      margin-left: 10%;
+      top: 20px;
+      width: 50%;
+      height: 35px;
+      background-color: rgba(100, 120, 100, .5);
+    }
     .gm-style-iw {
       text-align: center;
     }
@@ -286,10 +315,32 @@
   };
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+
+<script>
+  var OWMkey = "0a3275b14aa9bb2ad136e94fd73dff51";
+
+  //lat, long, and day should be inputs to a function here.
+  var lat = 50;
+  var lon = 50;
+  var request = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + OWMkey + "&lat=" + lat + "&lon=" + lon + "&cnt=15";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", request, false);
+  xhr.send();
+
+  var data = JSON.parse(xhr.responseText);
+
+  //need to figure out how to pull out from this data...
+
+</script>
+
 </head>
 <body>
 
 <div id="map-canvas" style="width: 66.6%;"></div>
+<div id="list" style="width: 33.3%;"></div>
+<div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15<p></div>
+<div id="search-bar"></div>
 
 </body>
 </html>
