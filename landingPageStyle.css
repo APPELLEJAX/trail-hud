@@ -38,15 +38,19 @@ html, body {
 }
 
 #search-bar{
-	padding-left: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
     position: fixed;
-    margin-left: 10%;
-    top: 20px;
-    width: 50%;
-    height: 35px;
-    color: white;
-    font-size: 15px;
-    background-color: rgba(100, 120, 100, .8);
+    margin-left: 33.5%;
+    top: 10px;
+    width: 32%;
+    color: #444444;
+    background-color: rgba(255,255,255,0.85);
+    transition: all 0.3s ease 0s;
+}
+
+#search-bar:focus {
+	background-color: rgba(255,255,255,1.0);
 }
 
 .placelistitem{

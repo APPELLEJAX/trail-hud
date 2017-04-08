@@ -15,6 +15,7 @@
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
 		        $("#mapArea").fadeIn(1000);
+		        google.maps.event.trigger(map, 'resize');
 		        $("#weather-container").fadeIn(1000);
 		    });
 		});
@@ -370,7 +371,7 @@
 	</div>
 	<div id="mapArea">
 		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
-		<input id="search-bar"></input>
+		<input id="search-bar" placeholder="search for a location"></input>
 		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
 		  <div style="height: 70px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
 		    <h2 style="text-align: center; vertical-align: middle; line-height: 70px; margin-top: 0px !important;">Campgrounds</h2>
