@@ -286,13 +286,15 @@
     var pic  = results.list[0].weather[0].icon;
 
     document.getElementById("temp").innerHTML = "Current Temp: " + temp;
-    document.getElementById("wthrpic1").src = "http://openweathermap.org/img/w/" + results.list[0].weather[0].icon + ".png"
-    document.getElementById("wthrpic2").src = "http://openweathermap.org/img/w/" + results.list[1].weather[0].icon + ".png"
-    document.getElementById("wthrpic3").src = "http://openweathermap.org/img/w/" + results.list[2].weather[0].icon + ".png"
-    document.getElementById("wthrpic4").src = "http://openweathermap.org/img/w/" + results.list[3].weather[0].icon + ".png"
-    document.getElementById("wthrpic5").src = "http://openweathermap.org/img/w/" + results.list[4].weather[0].icon + ".png"
-    document.getElementById("wthrpic6").src = "http://openweathermap.org/img/w/" + results.list[5].weather[0].icon + ".png"
-    document.getElementById("wthrpic7").src = "http://openweathermap.org/img/w/" + results.list[6].weather[0].icon + ".png"
+
+
+    document.getElementById("wthrpic1").src = "icons/" + results.list[0].weather[0].icon + ".png"
+    document.getElementById("wthrpic2").src = "icons/" + results.list[1].weather[0].icon + ".png"
+    document.getElementById("wthrpic3").src = "icons/" + results.list[2].weather[0].icon + ".png"
+    document.getElementById("wthrpic4").src = "icons/" + results.list[3].weather[0].icon + ".png"
+    document.getElementById("wthrpic5").src = "icons/" + results.list[4].weather[0].icon + ".png"
+    document.getElementById("wthrpic6").src = "icons/" + results.list[5].weather[0].icon + ".png"
+    document.getElementById("wthrpic7").src = "icons/" + results.list[6].weather[0].icon + ".png"
 
     // if (results.list.length > 0) {
     //     resetData();
@@ -378,7 +380,6 @@
     <h2 style="text-align: center; vertical-align: middle; line-height: 70px; margin-top: 0px !important;">Campgrounds</h2>
   </div>
 </div>
-<div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15<p></div>
 
 <div id="weather-container">Weekly forcast: </br>
                             <img class="wthrpic" id="wthrpic1" src="no-image.png" alt="" />
