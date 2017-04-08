@@ -48,130 +48,131 @@
       text-align: center;
     }
   </style>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKH-j5LlIkLiIBpe3vCR1ObsUTTF4QQN8&libraries=places">
-</script>
-<script>
-  var map;
-  var geoJSON;
-  var request;
-  var gettingData = false;
-  var openWeatherMapKey = "0a3275b14aa9bb2ad136e94fd73dff51"
-  function initialize() {
-    var pyrmont = {lat: 41.236, lng:  -74.128};
-    var mapOptions = {
-      zoom: 12,
-      center: pyrmont,
-      styles: [
-                {
-                  "featureType": "landscape",
-                  "stylers": [
-                    {
-                      "color": "#493548"
-                    },
-                    {
-                      "weight": 3.5
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi",
-                  "stylers": [
-                    {
-                      "color": "#4b4e6d"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi",
-                  "elementType": "labels.icon",
-                  "stylers": [
-                    {
-                      "visibility": "off"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi",
-                  "elementType": "labels.text",
-                  "stylers": [
-                    {
-                      "visibility": "off"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road",
-                  "stylers": [
-                    {
-                      "color": "#6a8d92"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road.arterial",
-                  "elementType": "labels",
-                  "stylers": [
-                    {
-                      "visibility": "off"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road.highway",
-                  "elementType": "labels",
-                  "stylers": [
-                    {
-                      "visibility": "off"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road.local",
-                  "stylers": [
-                    {
-                      "visibility": "off"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "transit",
-                  "stylers": [
-                    {
-                      "color": "#4b4e6d"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "water",
-                  "stylers": [
-                    {
-                      "color": "#6ca6c1"
-                    },
-                    {
-                      "saturation": 40
-                    },
-                    {
-                      "lightness": 40
-                    }
-                  ]
-                }
-              ]};
-    map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKH-j5LlIkLiIBpe3vCR1ObsUTTF4QQN8&libraries=places"></script>
 
-    var icons = {
-          hiking: {
-            icon: 'marker_smaller.png'
-          }
-        };
+  <script>
+    var map;
+    var geoJSON;
+    var request;
+    var gettingData = false;
+    var openWeatherMapKey = "0a3275b14aa9bb2ad136e94fd73dff51"
 
-    infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: pyrmont,
-          radius: 500000,
-          type: ['campground']
-        }, callback);
+    function initialize() {
+      var pyrmont = {lat: 41.236, lng:  -74.128};
+      var mapOptions = {
+        zoom: 12,
+        center: pyrmont,
+        styles: [
+                  {
+                    "featureType": "landscape",
+                    "stylers": [
+                      {
+                        "color": "#493548"
+                      },
+                      {
+                        "weight": 3.5
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi",
+                    "stylers": [
+                      {
+                        "color": "#4b4e6d"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "poi",
+                    "elementType": "labels.text",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road",
+                    "stylers": [
+                      {
+                        "color": "#6a8d92"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.arterial",
+                    "elementType": "labels",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.highway",
+                    "elementType": "labels",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "road.local",
+                    "stylers": [
+                      {
+                        "visibility": "off"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "transit",
+                    "stylers": [
+                      {
+                        "color": "#4b4e6d"
+                      }
+                    ]
+                  },
+                  {
+                    "featureType": "water",
+                    "stylers": [
+                      {
+                        "color": "#6ca6c1"
+                      },
+                      {
+                        "saturation": 40
+                      },
+                      {
+                        "lightness": 40
+                      }
+                    ]
+                  }
+          ]};
+
+          map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+          var icons = {
+              hiking: {
+                icon: 'marker_smaller.png'
+              }
+          };
+
+          infowindow = new google.maps.InfoWindow();
+          var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+            location: pyrmont,
+            radius: 500000,
+            type: ['campground']
+          }, callback);
 
     // Add interaction listeners to make weather requests
     google.maps.event.addListener(map, 'idle', checkIfDataRequested);
@@ -330,6 +331,12 @@
 
   var data = JSON.parse(xhr.responseText);
 
+  console.log(data);
+
+  console.log(9/5 * (data.list[10].temp.day - 273) + 32);
+
+  document.getElementById('temp').innerHTML = Math.round(9/5 * (data.list[10].temp.day - 273) + 32, 2) + "&degF";
+
   //need to figure out how to pull out from this data...
 
 </script>
@@ -339,7 +346,7 @@
 
 <div id="map-canvas" style="width: 66.6%;"></div>
 <div id="list" style="width: 33.3%;"></div>
-<div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15<p></div>
+<div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15</p></div>
 <div id="search-bar"></div>
 
 </body>
