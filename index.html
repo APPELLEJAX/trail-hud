@@ -50,7 +50,7 @@
     }
   </style>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKH-j5LlIkLiIBpe3vCR1ObsUTTF4QQN8&libraries=places"></script>
-  
+
   <script>
     var map;
     var geoJSON;
@@ -241,12 +241,10 @@
   // Make the weather request
   var getWeather = function(northLat, eastLng, southLat, westLng) {
     gettingData = true;
-    var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="
-                        + westLng + "," + northLat + "," //left top
-                        + eastLng + "," + southLat + "," //right bottom
-                        + map.getZoom()
-                        + "&cluster=yes&format=json"
-                        + "&APPID=" + openWeatherMapKey;
+    var requestString = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + openWeatherMapKey
+                        + "&lat=" + (northLat + southLat)/2
+                        + "&lon=" + (eastLng + westLng)/2
+                        + "&cnt=16";
     request = new XMLHttpRequest();
     request.onload = proccessResults;
     request.open("get", requestString, true);
@@ -254,15 +252,22 @@
   };
   // Take the JSON results and proccess them
   var proccessResults = function() {
-    console.log(this);
+    //console.log(this);
     var results = JSON.parse(this.responseText);
-    if (results.list.length > 0) {
-        resetData();
-        for (var i = 0; i < results.list.length; i++) {
-          geoJSON.features.push(jsonToGeoJson(results.list[i]));
-        }
-        drawIcons(geoJSON);
-    }
+    console.log(results);
+
+    var temp = results.list[0].temp.day;
+    var pic  = results.list[0].weather[0].icon;
+
+    document.getElementById("temp").innerHTML = temp;
+    document.getElementById("wthrpic").src = "http://openweathermap.org/img/w/" + pic + ".png"
+    // if (results.list.length > 0) {
+    //     resetData();
+    //     for (var i = 0; i < results.list.length; i++) {
+    //       geoJSON.features.push(jsonToGeoJson(results.list[i]));
+    //     }
+    //     drawIcons(geoJSON);
+    // }
   };
   var infowindow = new google.maps.InfoWindow();
   // For each result that comes back, convert the data to geoJSON
@@ -320,7 +325,7 @@
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
-<script>
+<!-- <script>
   var OWMkey = "0a3275b14aa9bb2ad136e94fd73dff51";
 
   //lat, long, and day should be inputs to a function here.
@@ -342,7 +347,7 @@
 
   //need to figure out how to pull out from this data...
 
-</script>
+</script> -->
 
 </head>
 <body>
