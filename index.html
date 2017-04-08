@@ -129,6 +129,21 @@
               ]};
     map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
+
+    var icons = {
+          hiking: {
+            icon: 'marker_smaller.png'
+          }
+        };
+
+    infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 500000,
+          type: ['campground']
+        }, callback);
+
     // Add interaction listeners to make weather requests
     google.maps.event.addListener(map, 'idle', checkIfDataRequested);
     // Sets up and populates the info window with details
