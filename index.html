@@ -277,6 +277,20 @@
 </script>
 
 <script>
+  var OWMkey = "0a3275b14aa9bb2ad136e94fd73dff51";
+
+  //lat, long, and day should be inputs to a function here.
+  var lat = 50;
+  var lon = 50;
+  var request = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + OWMkey + "&lat=" + lat + "&lon=" + lon + "&cnt=15";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", request, false);
+  xhr.send();
+
+  var data = JSON.parse(xhr.responseText);
+
+  //need to figure out how to pull out from this data...
 
 </script>
 
