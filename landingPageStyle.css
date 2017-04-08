@@ -62,6 +62,24 @@ input {
 select {
 	width: 277;
 	height: 50;
+    -moz-border-radius:5px; /* Firefox */
+    -webkit-border-radius: 5px; /* Safari, Chrome */
+    -khtml-border-radius: 5px; /* KHTML */
+    border-radius: 5px; /* CSS3 */
+    border: 0px;
+    background-color: #ffffff;
+    font-size: 20px;
+    padding-left: 20px;
+    color: #AAAAAA;
+    -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.30);
+	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.30);
+	box-shadow:0 0 15px 0 rgba(0,0,0,0.30);
+	-webkit-appearance: none;
+	background-image: url("dropdown-arrow-padding.png");
+	background-repeat: no-repeat;
+	background-margin: 20px;
+	background-size:   32px 8px;
+	background-position: right;
 }
 
 .dayAndYearInputs {
