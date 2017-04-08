@@ -346,7 +346,7 @@
 			<h1 id="logoHeader">TrailHub</h1>
 			<h2 class="searchInputHeaders">When?</h2>
 			<form>
-				<select name="monthInput">
+				<select name="monthInput" id="monthInput">
 					<option selected="selected" disabled="disabled" id="disabledOption">month</option>
 					<option>January</option>
 					<option>February</option>
@@ -361,8 +361,8 @@
 					<option>November</option>
 					<option>December</option>
 				</select>
-				<input type="text" name="dayInput" placeholder="day" class="dayAndYearInputs">
-				<input type="text" name="yearInput" placeholder="year" class="dayAndYearInputs">
+				<input type="text" name="dayInput" id="dayInput" placeholder="day" class="dayAndYearInputs">
+				<input type="text" name="yearInput" id="yearInput" placeholder="year" class="dayAndYearInputs">
 			</form>
 			<h2 class="searchInputHeaders">Where?</h2>
 			<form><input type="text" name="whereInput" placeholder="search for a location"></form>
@@ -373,8 +373,8 @@
 		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
 		<input id="search-bar" placeholder="search for a location"></input>
 		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
-		  <div style="height: 70px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
-		    <h2 style="text-align: center; vertical-align: middle; line-height: 70px; margin-top: 0px !important;">Campgrounds</h2>
+		  <div style="height: 70px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative; padding-top: 10px;">
+		    <h2 style="font-size: 24px; text-align: center; vertical-align: middle; line-height: 50px; margin-top: 0px !important;">CAMPGROUNDS</h2>
 		  </div>
 		</div>
 		<div id="weather-container"><p style="margin-bottom: 0px !important; margin-top: 10px !important;">Weekly forcast: </p>
