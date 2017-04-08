@@ -15,7 +15,6 @@
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
 		        $("#mapArea").fadeIn(1000);
-		        google.maps.event.trigger(map, 'resize');
 		        $("#weather-container").fadeIn(1000);
 		    });
 		});
@@ -166,7 +165,7 @@
 
 	        //
 
-	        list_item.innerHTML += ('<a class="calendar-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates=20110206T190000Z/20110206T200000Z&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
+	        list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates=20110206T190000Z/20110206T200000Z&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
 
 	        //
 
@@ -371,7 +370,7 @@
 	</div>
 	<div id="mapArea">
 		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
-		<input id="search-bar" placeholder="search for a location"></input>
+		<input id="search-bar"></input>
 		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
 		  <div style="height: 70px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
 		    <h2 style="text-align: center; vertical-align: middle; line-height: 70px; margin-top: 0px !important;">Campgrounds</h2>
