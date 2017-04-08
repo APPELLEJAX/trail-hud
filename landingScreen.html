@@ -6,6 +6,11 @@
 <link rel="stylesheet" type="text/css" href="landingPageStyle.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
 <title>TrailHunt - Find your path!</title>
+<script>
+function fade() {
+	$("body").fadeOut();
+}
+</script>
 </head>
 
 
@@ -15,7 +20,7 @@
 <h2>When?</h2>
 <form>
 <select name="monthInput">
-	<option selected="selected" disabled="disabled">month</option>
+	<option selected="selected" disabled="disabled" id="disabledOption">month</option>
 	<option>January</option>
 	<option>February</option>
 	<option>March</option>
@@ -34,7 +39,7 @@
 </form>
 <h2>Where?</h2>
 <form><input type="text" name="whereInput" placeholder="search for a location"></form>
-<button type="button" id="goButton">GO</button>
+<button type="button" id="goButton" onClick="fade();">GO</button>
 </div>
 </body>
 
