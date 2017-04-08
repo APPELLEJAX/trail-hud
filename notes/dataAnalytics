@@ -1,0 +1,37 @@
+Finra
+
+Global Features Vs. Understanding
+
+  - Not just general descriptions about data, but develop understanding about the
+    data.
+  - Image processing vs. image understanding
+  - Global text features vs. understanding semantics
+
+Apache Stanbol
+
+  -  Where to get: stanbol.apache.org. Clone the repository and begin using the
+     program. (clone with svn)
+  -  mvn clean install <-- skip tests
+  -  javaa compilation for the stanbol project..
+
+  -  RDF output example (dbipedia)
+      Resource Description Framework
+        -property graph ---digested down to--> TRIPLE
+                                                  A) Subject     vertex
+                                                  B) Predicate     edge
+                                                  C) Subject     vertex
+
+  -  Triple "stores" and "reasoners"
+
+
+SPARK
+
+https://github.com/aosama/spark101
+
+  POM project supports Java, Scala, and Spark Core
+  Sample spark operation using Java
+  Sample spark operation using Scala
+
+https://github.com/aosama/sparkfx
+
+  A gui will help visualize a spark execution.
