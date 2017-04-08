@@ -24,7 +24,8 @@ h1 {
 	text-align: center;
 	color: rgba(255, 255, 255, 0.7);
 	margin-top: 0px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
+	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.30);
 }
 
 h2 {
@@ -33,7 +34,64 @@ h2 {
 	text-align: left;
 	color: rgba(255, 255, 255, 0.7);
 	margin-top: 0px;
-	margin-bottom: 0px;
+	margin-bottom: -15px;
 	margin-left: 0px;
 	margin-right: 0px;
+	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.30);
+}
+
+input {
+	width: 547;
+	height: 50;
+	-moz-border-radius:5px; /* Firefox */
+    -webkit-border-radius: 5px; /* Safari, Chrome */
+    -khtml-border-radius: 5px; /* KHTML */
+    border-radius: 5px; /* CSS3 */
+    behavior:url("border-radius.htc");
+    border: 0px;
+    font-family: 'Roboto', sans-serif; 
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #444444;
+    -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.30);
+	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.30);
+	box-shadow:0 0 15px 0 rgba(0,0,0,0.30);
+}
+
+select {
+	width: 277;
+	height: 50;
+}
+
+.dayAndYearInputs {
+	width:120;
+	margin-left:10px;
+}
+
+#goButton {
+	width: 186;
+	height: 50;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	border: 0px;
+	-moz-border-radius:5px; /* Firefox */
+    -webkit-border-radius: 5px; /* Safari, Chrome */
+    -khtml-border-radius: 5px; /* KHTML */
+    border-radius: 5px; /* CSS3 */
+    behavior:url("border-radius.htc");
+    margin-top: 20px;
+    margin-left: 180px;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.4);
+    color: #4EB674;
+}
+
+#goButton:hover {
+	background-color: rgba(0,0,0,0.5);
+}
+
+#goButton:active {
+	background-color:rgba(0,0,0,0.6);
 }
