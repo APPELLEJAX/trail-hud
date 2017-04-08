@@ -1,11 +1,32 @@
 @CHARSET "UTF-8";
 
 body {
+ 	font-family: 'Roboto', sans-serif;
+ 	padding: 0px;
+ 	border: 0px;
+ 	margin: 0px;
+}
+
+#searchArea {
 	background: #ffffff;
  	background: -webkit-linear-gradient(#77EA89, #3B9E6A);
 	background:    -moz-linear-gradient(#77EA89, #3B9E6A);
  	background:         linear-gradient(#77EA89, #3B9E6A);
- 	font-family: 'Roboto', sans-serif;
+ 	width: 100%;
+ 	height: 100%;
+ 	border: 0px;
+ 	margin: 0px;
+ 	padding: 0px;
+ 	position: absolute;
+}
+
+#mapArea {
+	width: 100%;
+ 	height: 100%;
+ 	border: 0px;
+ 	margin: 0px;
+ 	padding: 0px;
+ 	background-color: red;
 }
 
 #bodyWrapper {
@@ -22,7 +43,7 @@ h1 {
 	font-family: 'Roboto', sans-serif;
 	font-size: 64px;
 	text-align: center;
-	color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 1.0);
 	margin-top: 0px;
 	margin-bottom: 20px;
 	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.20);
@@ -32,7 +53,7 @@ h2 {
 	font-family: 'Roboto', sans-serif;
 	font-size: 48px;
 	text-align: left;
-	color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.6);
 	margin-top: 0px;
 	margin-bottom: -15px;
 	margin-left: 0px;
@@ -57,6 +78,13 @@ input {
     -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	background-color: #C7EAD8;
+	transition: all 0.3s ease 0s;
+}
+
+input:focus {
+	outline: none;
+	background-color: rgba(255, 255, 255, 1.0);
 }
 
 select {
@@ -67,7 +95,7 @@ select {
     -khtml-border-radius: 5px; /* KHTML */
     border-radius: 5px; /* CSS3 */
     border: 0px;
-    background-color: #ffffff;
+    background-color: #C7EAD8;
     font-size: 20px;
     padding-left: 20px;
     color: #444444;
@@ -75,11 +103,17 @@ select {
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-appearance: none;
-	background-image: url("dropdown-arrow-padding.png");
+	background-image: url("dropdown-arrow-withpadding.png");
 	background-repeat: no-repeat;
 	background-margin: 20px;
 	background-size:   32px 8px;
 	background-position: right;
+	transition: all 0.3s ease 0s;
+}
+
+select:focus {
+	outline: none;
+	background-color: #ffffff;
 }
 
 .dayAndYearInputs {
@@ -107,14 +141,15 @@ select {
     -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	transition: all 0.3s ease 0s;
 }
 
 #goButton:hover {
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.6);
 }
 
 #goButton:active {
-	background-color:rgba(0,0,0,0.6);
+	background-color:rgba(0,0,0,0.8);
 }
 
 #disabledOption {

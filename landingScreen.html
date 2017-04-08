@@ -2,45 +2,57 @@
 
 
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="landingPageStyle.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
-<title>TrailHunt - Find your path!</title>
-<script>
-function fade() {
-	$("body").fadeOut();
-}
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="landingPageStyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		    $("#goButton").click(function(){
+		        $("#searchArea").slideUp(500);
+		    });
+		});
 </script>
+	<title>TrailHud - Find your path!</title>
 </head>
 
 
 <body>
-<div id="bodyWrapper">
-<h1>TrailHunt</h1>
-<h2>When?</h2>
-<form>
-<select name="monthInput">
-	<option selected="selected" disabled="disabled" id="disabledOption">month</option>
-	<option>January</option>
-	<option>February</option>
-	<option>March</option>
-	<option>April</option>
-	<option>May</option>
-	<option>June</option>
-	<option>July</option>
-	<option>August</option>
-	<option>September</option>
-	<option>October</option>
-	<option>November</option>
-	<option>December</option>
-</select>
-<input type="text" name="dayInput" placeholder="day" class="dayAndYearInputs">
-<input type="text" name="yearInput" placeholder="year" class="dayAndYearInputs">
-</form>
-<h2>Where?</h2>
-<form><input type="text" name="whereInput" placeholder="search for a location"></form>
-<button type="button" id="goButton" onClick="fade();">GO</button>
-</div>
+	<div id="searchArea">
+		<div id="bodyWrapper">
+			<h1>TRAIL HUD</h1>
+			<h2>When?</h2>
+			<form>
+				<select name="monthInput">
+					<option selected="selected" disabled="disabled" id="disabledOption">month</option>
+					<option>January</option>						<option>February</option>
+					<option>March</option>
+					<option>April</option>
+					<option>May</option>
+					<option>June</option>
+					<option>July</option>
+					<option>August</option>
+					<option>September</option>
+					<option>October</option>
+					<option>November</option>
+					<option>December</option>
+				</select>
+				<input type="text" name="dayInput" placeholder="day" class="dayAndYearInputs">
+				<input type="text" name="yearInput" placeholder="year" class="dayAndYearInputs">
+			</form>
+			<h2>Where?</h2>
+			<form><input type="text" name="whereInput" placeholder="search for a location"></form>
+			<div class="pt-triggers"><button type="button" id="goButton">EXPLORE</button></div>
+		</div>
+	</div>
+	<div id="mapArea">
+		<h1>Second page.</h1>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/pagetransitions.js"></script>
+	
 </body>
 
 
