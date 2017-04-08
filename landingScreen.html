@@ -15,6 +15,7 @@
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
 		        $("#mapArea").fadeIn(1000);
+						google.maps.event.trigger(map,'resize');
 		        $("#weather-container").fadeIn(1000);
 		    });
 		});
