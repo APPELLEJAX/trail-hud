@@ -1,10 +1,68 @@
 @CHARSET "UTF-8";
 
-body {
+html, body {
  	font-family: 'Roboto', sans-serif;
  	padding: 0px;
  	border: 0px;
  	margin: 0px;
+ 	width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+
+#map-canvas {
+	width: 100%;
+	height: 100%;
+}
+
+#weather-container{
+	position: fixed;
+	left: 20px;
+    bottom: 25px;
+    height: 150px;
+    width: 350px;
+
+    align-content: center;
+
+    color: #eeffee;
+    font-size: 20pt;
+    text-align: center;
+    text-shadow: #000000;
+
+    background-color: rgba(100, 120, 100, .8);
+}
+
+.wthrpic{
+	margin-top: 10px;
+	height: 20px;
+}
+
+#search-bar{
+	padding-left: 10px;
+    position: fixed;
+    margin-left: 10%;
+    top: 20px;
+    width: 50%;
+    height: 35px;
+    color: white;
+    font-size: 15px;
+    background-color: rgba(100, 120, 100, .8);
+}
+
+.placelistitem{
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    border-bottom:  1px solid #003300;
+}
+
+.placelistitem button{
+	float: right;
+	width: 100px;
+}
+
+.gm-style-iw {
+	text-align: center;
 }
 
 #searchArea {
@@ -26,7 +84,6 @@ body {
  	border: 0px;
  	margin: 0px;
  	padding: 0px;
- 	background-color: red;
 }
 
 #bodyWrapper {
@@ -39,7 +96,7 @@ body {
     margin-top:-224px;
 }
 
-h1 {
+#logoHeader {
 	font-family: 'Roboto', sans-serif;
 	font-size: 64px;
 	text-align: center;
@@ -49,7 +106,7 @@ h1 {
 	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.20);
 }
 
-h2 {
+.searchInputHeaders {
 	font-family: 'Roboto', sans-serif;
 	font-size: 48px;
 	text-align: left;
