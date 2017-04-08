@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="weathercalendar.css">
-  <title>Weather layer</title>
+  <title>Trail Hud</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <style>
     html, body{
       width: 100%;
@@ -161,7 +162,7 @@
 
     var icons = {
           hiking: {
-            icon: 'marker_smaller.png'
+            icon: 'marker_smallest_v2.png'
           }
         };
 
@@ -187,6 +188,8 @@
 
     function createMarker(place) {
         var placeLoc = place.geometry.location;
+        var list_item = document.getElementById("list");
+        list_item.innerHTML += (`<p style="font-family: 'Roboto', sans-serif; margin-left: 10px">`+place.name+"</p>");
         var marker = new google.maps.Marker({
           map: map,
           icon: icons['hiking'].icon,
@@ -337,8 +340,19 @@
 </head>
 <body>
 
-<div id="map-canvas" style="width: 66.6%;"></div>
-<div id="list" style="width: 33.3%;"></div>
+<div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
+<div id="list" style="width: 33.3%; float: right; position: relative; overflow: scroll;">
+  <div style="height: 60px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
+    <p style="position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 30%;
+    margin: auto;">Campgrounds</p>
+  </div>
+</div>
 <div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15<p></div>
 <div id="search-bar"></div>
 
