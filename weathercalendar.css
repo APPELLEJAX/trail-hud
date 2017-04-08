@@ -10,3 +10,32 @@
 	background-color: #80B192;
 	height: 30px;
 }
+
+.home-btn,
+.home-btn:focus,
+.home-btn:active,
+.home-btn:visited {
+    background: transparent;
+    position: relative;
+    float: right;
+    border-color: #6a8d92;
+    color: #6a8d92;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 19px;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+.home-btn:hover {
+    background-color: #6a8d92 ;
+    color: #fff;
+}
