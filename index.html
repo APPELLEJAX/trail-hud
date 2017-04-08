@@ -37,7 +37,7 @@
     }
     #search-bar{
       position: fixed;
-      margin-left: 25%;
+      margin-left: 10%;
       top: 20px;
       width: 50%;
       height: 35px;
@@ -47,7 +47,7 @@
       text-align: center;
     }
   </style>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?">
 </script>
 <script>
   var map;
@@ -58,8 +58,102 @@
   function initialize() {
     var mapOptions = {
       zoom: 4,
-      center: new google.maps.LatLng(50,-50)
-    };
+      center: new google.maps.LatLng(50,-50),
+      styles: [
+                {
+                  "featureType": "landscape",
+                  "stylers": [
+                    {
+                      "color": "#493548"
+                    },
+                    {
+                      "weight": 3.5
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "stylers": [
+                    {
+                      "color": "#4b4e6d"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.icon",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road",
+                  "stylers": [
+                    {
+                      "color": "#6a8d92"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.arterial",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit",
+                  "stylers": [
+                    {
+                      "color": "#4b4e6d"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "stylers": [
+                    {
+                      "color": "#6ca6c1"
+                    },
+                    {
+                      "saturation": 40
+                    },
+                    {
+                      "lightness": 40
+                    }
+                  ]
+                }
+              ]};
     map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
     // Add interaction listeners to make weather requests
@@ -189,9 +283,10 @@
 </head>
 <body>
 
-<div id="map-canvas"></div>
-<div id="search-bar"></div>
+<div id="map-canvas" style="width: 66.6%;"></div>
+<div id="list" style="width: 33.3%;"></div>
 <div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15<p></div>
+<div id="search-bar"></div>
 
 </body>
 </html>
