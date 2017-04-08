@@ -170,6 +170,7 @@
 
           map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+
     var icons = {
           hiking: {
             icon: 'marker_smallest_v2.png'
@@ -185,7 +186,6 @@
           }, callback);
 
     // Add interaction listeners to make weather requests
-    //google.maps.event.addListener(map, 'idle', checkIfDataRequested);
     // Sets up and populates the info window with details
 
     function callback(results, status) {
@@ -233,7 +233,13 @@
       //   });
       // infowindow.open(map);
     });
+
   }
+
+  function setWeather(){
+    getCoords();
+  }
+
   var checkIfDataRequested = function() {
     // Stop extra requests being sent
     while (gettingData === true) {
@@ -242,6 +248,7 @@
     }
     getCoords();
   };
+
   function updateWeather(marker){
     map.setCenter(marker.getPosition());
     getCoords();
@@ -293,6 +300,7 @@
     //     drawIcons(geoJSON);
     // }
   };
+
   var infowindow = new google.maps.InfoWindow();
   // For each result that comes back, convert the data to geoJSON
   var jsonToGeoJson = function (weatherItem) {
@@ -346,12 +354,14 @@
       map.data.remove(feature);
     });
   };
+
   google.maps.event.addDomListener(window, 'load', initialize);
+  google.maps.event.addDomListener(window, 'load', setWeather);
+
 </script>
 
 <script>
   function makeCalendaerEvent(){
-
   }
 </script>
 
@@ -359,8 +369,8 @@
 <body>
 
 <div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
-<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
-  <div style="height: 60px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
+<form action="makeCalendarEvent" id="list" style="color: #aaffaa; background-color: #222222; width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
+  <div style="height: 60px; width: 100%; color: #111111; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
     <p style="position: absolute;
     top: 0;
     bottom: 0;
