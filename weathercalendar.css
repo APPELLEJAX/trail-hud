@@ -1,0 +1,11 @@
+* {
+  color: #330000;
+  height: 200%;
+}
+
+.weathercalendar {
+  position: absolute;
+  bottom: 10px;
+  left:10px;
+  color: #bbffaa;
+}
