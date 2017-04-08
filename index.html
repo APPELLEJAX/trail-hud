@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="weathercalendar.css">
   <title>Weather layer</title>
   <style>
     html, body{
@@ -18,7 +19,7 @@
       text-align: center;
     }
   </style>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKH-j5LlIkLiIBpe3vCR1ObsUTTF4QQN8&libraries=places">
 </script>
 <script>
   var map;
@@ -27,9 +28,10 @@
   var gettingData = false;
   var openWeatherMapKey = "0a3275b14aa9bb2ad136e94fd73dff51"
   function initialize() {
+    var pyrmont = {lat: 41.236, lng:  -74.128};
     var mapOptions = {
-      zoom: 4,
-      center: new google.maps.LatLng(50,-50),
+      zoom: 12,
+      center: pyrmont,
       styles: [
                 {
                   "featureType": "landscape",
@@ -130,6 +132,29 @@
     // Add interaction listeners to make weather requests
     google.maps.event.addListener(map, 'idle', checkIfDataRequested);
     // Sets up and populates the info window with details
+
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          icon: icons['hiking'].icon,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
+
     map.data.addListener('click', function(event) {
       infowindow.setContent(
        "<img src=" + event.feature.getProperty("icon") + ">"
@@ -250,7 +275,6 @@
 <body>
 
 <div id="map-canvas" style="width: 66.6%;"></div>
-<div id="list" style="width: 33.3%;"></div>
 
 </body>
 </html>
