@@ -20,8 +20,8 @@
       position: fixed;
       left: 20px;
       bottom: 25px;
-      height: 200px;
-      width: 200px;
+      height: 150px;
+      width: 350px;
 
       align-content: center;
 
@@ -32,10 +32,10 @@
 
       background-color: rgba(100, 120, 100, .5);
     }
-    #weather-container img{
+    .wthrpic{
       margin-top: 10px;
-      height: 100px;
-      width: 100px;
+      height: 40px;
+      width: 40px;
     }
     #search-bar{
       position: fixed;
@@ -43,7 +43,13 @@
       top: 20px;
       width: 50%;
       height: 35px;
-      background-color: rgba(100, 120, 100, .5);
+      background-color: rgba(100, 120, 100, .8);
+    }
+    .placelistitem{
+      font-family: 'Roboto', sans-serif;
+      margin-left: 10px;
+      padding-bottom: 5px;
+      border-bottom:  1px solid #003300;
     }
     .gm-style-iw {
       text-align: center;
@@ -176,10 +182,11 @@
           }, callback);
 
     // Add interaction listeners to make weather requests
-    google.maps.event.addListener(map, 'idle', checkIfDataRequested);
+    //google.maps.event.addListener(map, 'idle', checkIfDataRequested);
     // Sets up and populates the info window with details
 
     function callback(results, status) {
+        console.log(results);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -190,37 +197,40 @@
     function createMarker(place) {
         var placeLoc = place.geometry.location;
         var list_item = document.getElementById("list");
-        list_item.innerHTML += (`<p style="font-family: 'Roboto', sans-serif; margin-left: 10px">`+place.name+"</p>");
+        list_item.innerHTML += (`<div class="placelistitem"><h3>` + place.name +"</h3>" + place.vicinity + "<br/>rating: " + place.rating + " out of 5</div>");
+        list_item.meta = marker;
+        list_item.onClick = "updateWeather("+marker+")"
         var marker = new google.maps.Marker({
           map: map,
           icon: icons['hiking'].icon,
-          position: place.geometry.location
+          position: place.geometry.location,
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
+          // infowindow.setContent(place.name);
+          // infowindow.open(map, this);
+          updateWeather(marker);
         });
       }
 
     map.data.addListener('click', function(event) {
-      infowindow.setContent(
-       "<img src=" + event.feature.getProperty("icon") + ">"
-       + "<br /><strong>" + event.feature.getProperty("city") + "</strong>"
-       + "<br />" + event.feature.getProperty("temperature") + "&deg;C"
-       + "<br />" + event.feature.getProperty("weather")
-       );
-      infowindow.setOptions({
-          position:{
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng()
-          },
-          pixelOffset: {
-            width: 0,
-            height: -15
-          }
-        });
-      infowindow.open(map);
+      // infowindow.setContent(
+      //  "<img src=" + event.feature.getProperty("icon") + ">"
+      //  + "<br /><strong>" + event.feature.getProperty("city") + "</strong>"
+      //  + "<br />" + event.feature.getProperty("temperature") + "&deg;C"
+      //  + "<br />" + event.feature.getProperty("weather")
+      //  );
+      // infowindow.setOptions({
+      //     position:{
+      //       lat: event.latLng.lat(),
+      //       lng: event.latLng.lng()
+      //     },
+      //     pixelOffset: {
+      //       width: 0,
+      //       height: -15
+      //     }
+      //   });
+      // infowindow.open(map);
     });
   }
   var checkIfDataRequested = function() {
@@ -231,6 +241,11 @@
     }
     getCoords();
   };
+  function updateWeather(marker){
+    map.setCenter(marker.getPosition());
+    getCoords();
+  }
+
   // Get the coordinates from the Map bounds
   var getCoords = function() {
     var bounds = map.getBounds();
@@ -239,6 +254,7 @@
     getWeather(NE.lat(), NE.lng(), SW.lat(), SW.lng());
   };
   // Make the weather request
+
   var getWeather = function(northLat, eastLng, southLat, westLng) {
     gettingData = true;
     var requestString = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + openWeatherMapKey
@@ -256,11 +272,18 @@
     var results = JSON.parse(this.responseText);
     console.log(results);
 
-    var temp = results.list[0].temp.day;
+    var temp = Math.round(9/5*(results.list[0].temp.day - 273) + 32, 1) + " &degF";
     var pic  = results.list[0].weather[0].icon;
 
-    document.getElementById("temp").innerHTML = temp;
-    document.getElementById("wthrpic").src = "http://openweathermap.org/img/w/" + pic + ".png"
+    document.getElementById("temp").innerHTML = "Current Temp: " + temp;
+    document.getElementById("wthrpic1").src = "http://openweathermap.org/img/w/" + results.list[0].weather[0].icon + ".png"
+    document.getElementById("wthrpic2").src = "http://openweathermap.org/img/w/" + results.list[1].weather[0].icon + ".png"
+    document.getElementById("wthrpic3").src = "http://openweathermap.org/img/w/" + results.list[2].weather[0].icon + ".png"
+    document.getElementById("wthrpic4").src = "http://openweathermap.org/img/w/" + results.list[3].weather[0].icon + ".png"
+    document.getElementById("wthrpic5").src = "http://openweathermap.org/img/w/" + results.list[4].weather[0].icon + ".png"
+    document.getElementById("wthrpic6").src = "http://openweathermap.org/img/w/" + results.list[5].weather[0].icon + ".png"
+    document.getElementById("wthrpic7").src = "http://openweathermap.org/img/w/" + results.list[6].weather[0].icon + ".png"
+
     // if (results.list.length > 0) {
     //     resetData();
     //     for (var i = 0; i < results.list.length; i++) {
@@ -325,35 +348,11 @@
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
-<!-- <script>
-  var OWMkey = "0a3275b14aa9bb2ad136e94fd73dff51";
-
-  //lat, long, and day should be inputs to a function here.
-  var lat = 50;
-  var lon = 50;
-  var request = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + OWMkey + "&lat=" + lat + "&lon=" + lon + "&cnt=15";
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", request, false);
-  xhr.send();
-
-  var data = JSON.parse(xhr.responseText);
-
-  console.log(data);
-
-  console.log(9/5 * (data.list[10].temp.day - 273) + 32);
-
-  document.getElementById('temp').innerHTML = Math.round(9/5 * (data.list[10].temp.day - 273) + 32, 2) + "&degF";
-
-  //need to figure out how to pull out from this data...
-
-</script> -->
-
 </head>
 <body>
 
 <div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
-<div id="list" style="width: 33.3%; float: right; position: relative; overflow: scroll;">
+<div id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
   <div style="height: 60px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative;">
     <p style="position: absolute;
     top: 0;
@@ -365,8 +364,18 @@
     margin: auto;">Campgrounds</p>
   </div>
 </div>
+<<<<<<< HEAD
 <div id="weather-container"><img id="wthrpic" src="" alt="no img for you" /><br/><p id="temp">15<p></div>
 <input id="search-bar"></input>
+<div id="weather-container">Weekly forcast: </br>
+                            <img class="wthrpic" id="wthrpic1" src="no-image.png" alt="" />
+                            <img class="wthrpic" id="wthrpic2" src="no-image.png" alt="" />
+                            <img class="wthrpic" id="wthrpic3" src="no-image.png" alt="" />
+                            <img class="wthrpic" id="wthrpic4" src="no-image.png" alt="" />
+                            <img class="wthrpic" id="wthrpic5" src="no-image.png" alt="" />
+                            <img class="wthrpic" id="wthrpic6" src="no-image.png" alt="" />
+                            <img class="wthrpic" id="wthrpic7" src="no-image.png" alt="" />
+                            <br/><p id="temp">Current Temp: NA<p></div>
 
 </body>
 </html>
