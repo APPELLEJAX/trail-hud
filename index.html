@@ -203,15 +203,7 @@
     function createMarker(place) {
         var placeLoc = place.geometry.location;
         var list_item = document.getElementById("list");
-//        list_item.innerHTML += (`<button class="home-btn">Add to Calendar</button><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>` + place.name +"</h3>" + place.vicinity + "<br/>rating: " + place.rating + ` out of 5</div>`);
-
-
-        //
-
         list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates=20110206T190000Z/20110206T200000Z&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
-
-        //
-
 
         var marker = new google.maps.Marker({
           map: map,
