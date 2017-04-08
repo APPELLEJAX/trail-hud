@@ -32,11 +32,11 @@ body {
 #bodyWrapper {
 	position:absolute;
     width:547px;
-    height:379px;
+    height:449px;
     left:50%;
     top:50%;
     margin-left:-273px;
-    margin-top:-189px;
+    margin-top:-224px;
 }
 
 h1 {
@@ -45,7 +45,7 @@ h1 {
 	text-align: center;
 	color: rgba(255, 255, 255, 1.0);
 	margin-top: 0px;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.20);
 }
 
@@ -133,7 +133,7 @@ select:focus {
     -khtml-border-radius: 5px; /* KHTML */
     border-radius: 5px; /* CSS3 */
     behavior:url("border-radius.htc");
-    margin-top: 20px;
+    margin-top: 60px;
     margin-left: 180px;
     font-weight: bold;
     background-color: rgba(0,0,0,0.4);
