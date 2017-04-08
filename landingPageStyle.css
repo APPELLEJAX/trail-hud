@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+body {
+	background: #ffffff;
+ 	background: -webkit-linear-gradient(#77EA89, #3B9E6A);
+	background:    -moz-linear-gradient(#77EA89, #3B9E6A);
+ 	background:         linear-gradient(#77EA89, #3B9E6A);
+ 	font-family: 'Roboto', sans-serif;
+}
+
+#bodyWrapper {
+	position:absolute;
+    width:547px;
+    height:379px;
+    left:50%;
+    top:50%;
+    margin-left:-273px;
+    margin-top:-189px;
+}
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 64px;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.7);
+	margin-top: 0px;
+	margin-bottom: 40px;
+}
+
+h2 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 48px;
+	text-align: left;
+	color: rgba(255, 255, 255, 0.7);
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
