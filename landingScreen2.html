@@ -15,8 +15,8 @@
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
 		        $("#mapArea").fadeIn(1000);
-				google.maps.event.trigger(map, 'resize');
 		        $("#weather-container").fadeIn(1000);
+				google.maps.event.trigger(map, 'resize');
 		    });
 		});
 	</script>
@@ -153,13 +153,14 @@
 	  };
 
 	  function updateWeather(marker){
-	    map.setCenter(marker.getPosition());
-	    getCoords();
+	  	console.log("I'm here!");
+	    marker.map.setCenter(marker.getPosition());
+	    getCoords(marker);
 	  }
 
 	  // Get the coordinates from the Map bounds
-	  var getCoords = function() {
-	    var bounds = map.getBounds();
+	  var getCoords = function(marker) {
+	    var bounds = marker.map.getBounds();
 	    var NE = bounds.getNorthEast();
 	    var SW = bounds.getSouthWest();
 	    getWeather(NE.lat(), NE.lng(), SW.lat(), SW.lng());
