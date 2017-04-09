@@ -181,7 +181,7 @@
 
 	  var getWeather = function(northLat, eastLng, southLat, westLng) {
 	    gettingData = true;
-	    var requestString = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + openWeatherMapKey
+	    var requestString = "https://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + openWeatherMapKey
 	                        + "&lat=" + (northLat + southLat)/2
 	                        + "&lon=" + (eastLng + westLng)/2
 	                        + "&cnt=16";
@@ -275,6 +275,7 @@
 
 	  google.maps.event.addDomListener(window, 'load', initialize);
 	  google.maps.event.addDomListener(window, 'load', setWeather);
+		return false;
 	}
 
 	</script>
@@ -294,7 +295,7 @@
 			<h3 id="tagline">Find your path.</h3>
 			<h2 class="searchInputHeaders">When?</h2>
 			<form id="time">
-				<select name="monthInput" id="monthInput">
+				<select name="monthInput" id="monthInput" onsubmit="initialize()">
 					<option selected="selected" disabled="disabled" id="disabledOption">month</option>
 					<option>January</option>
 					<option>February</option>
@@ -313,8 +314,8 @@
 				<input type="number" maxlength="4" name="yearInput" id="yearInput" placeholder="year" class="dayAndYearInputs">
 			</form>
 			<h2 class="searchInputHeaders">Where?</h2>
-			<form><input type="text" id="location_input" name="whereInput" placeholder="search for a location"></form>
-			<div><button type="button" id="goButton" onclick="initialize()">EXPLORE</button></div>
+			<input type="text" id="location_input" name="whereInput" placeholder="search for a location"/>
+			<div><button type="submit" id="goButton" onclick="initialize()">EXPLORE</button></div>
 		</div>
 	</div>
 	<div id="mapArea">
