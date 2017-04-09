@@ -19,20 +19,28 @@ html, body {
 	position: absolute;
 	left: 16px;
     bottom: 30;
-    height: 150px;
-    width: 350px;
+    height: 100px;
+    width: 250px;
     align-content: center;
     color: #ffffff;
-    font-size: 20pt;
+    font-size: 15pt;
     text-align: center;
     text-shadow: #000000;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, .60);
+    background-color: rgba(50, 50, 50, 0.8);
+}
+
+#temp{
+	margin-top: 0;
+	padding-top: 0;
+	font-size: 	16px;
 }
 
 .wthrpic{
 	margin-top: 10px;
 	height: 20px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 #search-bar{

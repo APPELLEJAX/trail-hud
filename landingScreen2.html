@@ -21,7 +21,6 @@
 		        	if(true) {
 		        		$("#searchArea").slideUp(500);
 		        		$("#mapArea").fadeIn(1000);
-		        		$("#weather-container").fadeIn(1000);
 						google.maps.event.trigger(map, 'resize');
 					}
 				}
@@ -122,6 +121,7 @@
 	          infowindow.setContent(place.name);
 	          infowindow.open(map, this);
 	          updateWeather(marker);
+	          $("#weather-container").fadeIn(500);
 	        });
 	      }
 
@@ -195,7 +195,7 @@
 	    var temp = Math.round(9/5*(results.list[0].temp.day - 273) + 32, 1) + " &degF";
 	    var pic  = results.list[0].weather[0].icon;
 
-	    document.getElementById("temp").innerHTML = "Current Temp: " + temp;
+	    document.getElementById("temp").innerHTML = "Currently " + temp;
 
 
 	    document.getElementById("wthrpic1").src = "icons/" + results.list[0].weather[0].icon + ".png"
@@ -321,7 +321,7 @@
 		    <h2 style="font-size: 24px; text-align: center; vertical-align: middle; line-height: 50px; margin-top: 0px !important;">CAMPGROUNDS</h2>
 		  </div>
 		</div>
-		<div id="weather-container"><p style="margin-bottom: 0px !important; margin-top: 10px !important;">Weekly forcast: </p>
+		<div id="weather-container"><p style="margin-bottom: 0px !important; margin-top: 10px !important;"><b>Daily Forecast</b></p>
 			<img class="wthrpic" id="wthrpic1" src="icons/03d.png" alt="" />
 		    <img class="wthrpic" id="wthrpic2" src="icons/03d.png" alt="" />
 		    <img class="wthrpic" id="wthrpic3" src="icons/03d.png" alt="" />
@@ -329,7 +329,7 @@
 		    <img class="wthrpic" id="wthrpic5" src="icons/03d.png" alt="" />
 		    <img class="wthrpic" id="wthrpic6" src="icons/03d.png" alt="" />
 		    <img class="wthrpic" id="wthrpic7" src="icons/03d.png" alt="" />
-		    <br/><p id="temp">Current Temp: 70 &degF<p></div>
+		    <p id="temp">Currently: 70 &degF</p></div>
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
