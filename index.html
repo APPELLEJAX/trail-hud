@@ -109,7 +109,7 @@
 	        var end_time = year + number_month + day + "T200000Z";
 
 	        if(start_time !== "T190000Z"){
-	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">+ EVENT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><div style="width: 60%;"><h3>' + place.name + '</h3>' + place.vicinity + '<br/><i>Rating: ' + place.rating + ' out of 5</i></div></div>');
+	        	list_item.innerHTML += ('<a class="home-btn" href="https://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">+ EVENT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><div style="width: 60%;"><h3>' + place.name + '</h3>' + place.vicinity + '<br/><i>Rating: ' + place.rating + ' out of 5</i></div></div>');
 	    	}
 
 	        //
@@ -235,7 +235,7 @@
 	        windSpeed: weatherItem.wind.speed,
 	        windDegrees: weatherItem.wind.deg,
 	        windGust: weatherItem.wind.gust,
-	        icon: "http://openweathermap.org/img/w/"
+	        icon: "https://openweathermap.org/img/w/"
 	              + weatherItem.weather[0].icon  + ".png",
 	        coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]
 	      },
