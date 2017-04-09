@@ -165,8 +165,21 @@
 
 
 	        //
+	        var time_info = document.getElementById("time");
+	        var year = time_info[2].value;
+	        var day = time_info[1].value; 
+	        var month = time_info[0].selectedOptions[0].value;
+	        var dat = new Date('1 ' + month + ' 1999');
+	        var number_month = "";
+	        if (dat.getMonth() < 10){
+	        	number_month = "0" + dat.getMonth();
+	        }
+	        var start_time = year + number_month + day + "T190000Z";
+	        var end_time = year + number_month + day + "T200000Z";
 
-	        list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates=20110206T190000Z/20110206T200000Z&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
+	        if(start_time !== "T190000Z"){
+	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
+	    	}
 
 	        //
 
@@ -345,7 +358,7 @@
 		<div id="bodyWrapper">
 			<h1 id="logoHeader">TrailHub</h1>
 			<h2 class="searchInputHeaders">When?</h2>
-			<form>
+			<form id="time">
 				<select name="monthInput" id="monthInput">
 					<option selected="selected" disabled="disabled" id="disabledOption">month</option>
 					<option>January</option>
@@ -366,7 +379,7 @@
 			</form>
 			<h2 class="searchInputHeaders">Where?</h2>
 			<form><input type="text" name="whereInput" placeholder="search for a location"></form>
-			<div class="pt-triggers"><button type="button" id="goButton">EXPLORE</button></div>
+			<div class="pt-triggers"><button type="button" id="goButton" onclick="initialize()">EXPLORE</button></div>
 		</div>
 	</div>
 	<div id="mapArea">
