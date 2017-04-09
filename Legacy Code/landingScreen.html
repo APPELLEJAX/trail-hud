@@ -1,0 +1,426 @@
+<html>
+
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="landingPageStyle.css">
+	<link rel="stylesheet" type="text/css" href="weathercalendar.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+	<title>TrailHub - Find your path!</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		    $("#mapArea").hide();
+		    $("#weather-container").hide();
+			$("#goButton").click(function(){
+		        $("#searchArea").slideUp(500);
+		        $("#mapArea").fadeIn(600);
+		        google.maps.event.trigger(map, 'resize');
+		        $("#weather-container").fadeIn(600);
+		    });
+		});
+	</script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKH-j5LlIkLiIBpe3vCR1ObsUTTF4QQN8&libraries=places"></script>
+	<script>
+		var map;
+	    var geoJSON;
+	    var request;
+	    var gettingData = false;
+	    var openWeatherMapKey = "0a3275b14aa9bb2ad136e94fd73dff51"
+	    var coor_x; 
+	    var coor_y;
+
+	    function initialize() {
+	    	var location_input = document.getElementById("location_input");
+	    	var location_name = location_input.value;
+	    	var parsed_location = location_name.split(' ').join('+');
+	    	var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+parsed_location+"&key=AIzaSyBKH-j5LlIkLiIBpe3vCR1ObsUTTF4QQN8";
+	    	var ll_JSON = $.getJSON(url , function( data ){
+
+	    			coor_x = Math.round(data.results[0].geometry.location.lat * 100) / 100;
+	    			coor_y = Math.round(data.results[0].geometry.location.lng * 100) / 100;
+
+	    			var pyrmont = {lat: coor_x, lng:  coor_y};
+	      	var mapOptions = {
+	        	zoom: 10,
+	        	center: pyrmont,
+		        styles: [
+		                  {
+		                    "featureType": "landscape",
+		                    "stylers": [
+		                      {
+		                        "color": "#493548"
+		                      },
+		                      {
+		                        "weight": 3.5
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "poi",
+		                    "stylers": [
+		                      {
+		                        "color": "#4b4e6d"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "poi",
+		                    "elementType": "labels.icon",
+		                    "stylers": [
+		                      {
+		                        "visibility": "off"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "poi",
+		                    "elementType": "labels.text",
+		                    "stylers": [
+		                      {
+		                        "visibility": "off"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "road",
+		                    "stylers": [
+		                      {
+		                        "color": "#6a8d92"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "road.arterial",
+		                    "elementType": "labels",
+		                    "stylers": [
+		                      {
+		                        "visibility": "off"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "road.highway",
+		                    "elementType": "labels",
+		                    "stylers": [
+		                      {
+		                        "visibility": "off"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "road.local",
+		                    "stylers": [
+		                      {
+		                        "visibility": "off"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "transit",
+		                    "stylers": [
+		                      {
+		                        "color": "#4b4e6d"
+		                      }
+		                    ]
+		                  },
+		                  {
+		                    "featureType": "water",
+		                    "stylers": [
+		                      {
+		                        "color": "#6ca6c1"
+		                      },
+		                      {
+		                        "saturation": 40
+		                      },
+		                      {
+		                        "lightness": 40
+		                      }
+		                    ]
+		                  }
+		          ]};
+
+		      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+		      var icons = {
+	          hiking: {
+	            icon: 'marker_smallest_v2.png'
+	          }
+	        };
+	
+	          infowindow = new google.maps.InfoWindow();
+	          var service = new google.maps.places.PlacesService(map);
+	            service.nearbySearch({
+	            location: pyrmont,
+	            radius: 500000,
+	            type: ['campground']
+	          }, callback);
+	
+	    // Add interaction listeners to make weather requests
+	    // Sets up and populates the info window with details
+	
+	    function callback(results, status) {
+	        console.log(results);
+	        if (status === google.maps.places.PlacesServiceStatus.OK) {
+	          for (var i = 0; i < results.length; i++) {
+	            createMarker(results[i]);
+	          }
+	        }
+	      }
+	
+	    function createMarker(place) {
+	        var placeLoc = place.geometry.location;
+	        var list_item = document.getElementById("list");
+	//        list_item.innerHTML += (`<button class="home-btn">Add to Calendar</button><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>` + place.name +"</h3>" + place.vicinity + "<br/>rating: " + place.rating + ` out of 5</div>`);
+	
+	
+	        //
+	        var time_info = document.getElementById("time");
+	        var year = time_info[2].value;
+	        var day = time_info[1].value; 
+	        var month = time_info[0].selectedOptions[0].value;
+	        var dat = new Date('1 ' + month + ' 1999');
+	        var number_month = "";
+	        if (dat.getMonth() < 10){
+	        	number_month = "0" + dat.getMonth();
+	        }
+	        var start_time = year + number_month + day + "T100000Z";
+	        var end_time = year + number_month + day + "T200000Z";
+
+	        if(start_time !== "T190000Z"){
+	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
+	    	}
+
+	        //
+	
+	
+	        var marker = new google.maps.Marker({
+	          map: map,
+	          icon: icons['hiking'].icon,
+	          position: place.geometry.location,
+	        });
+	
+	        google.maps.event.addListener(marker, 'click', function() {
+	          infowindow.setContent(place.name);
+	          infowindow.open(map, this);
+	          updateWeather(marker);
+	        });
+	      }
+	
+	    map.data.addListener('click', function(event) {
+	      // infowindow.setContent(
+	      //  "<img src=" + event.feature.getProperty("icon") + ">"
+	      //  + "<br /><strong>" + event.feature.getProperty("city") + "</strong>"
+	      //  + "<br />" + event.feature.getProperty("temperature") + "&deg;C"
+	      //  + "<br />" + event.feature.getProperty("weather")
+	      //  );
+	      // infowindow.setOptions({
+	      //     position:{
+	      //       lat: event.latLng.lat(),
+	      //       lng: event.latLng.lng()
+	      //     },
+	      //     pixelOffset: {
+	      //       width: 0,
+	      //       height: -15
+	      //     }
+	      //   });
+	      // infowindow.open(map);
+	    });
+	
+	  }
+	
+	  function setWeather(){
+	    getCoords();
+	  }
+	
+	  var checkIfDataRequested = function() {
+	    // Stop extra requests being sent
+	    while (gettingData === true) {
+	      request.abort();
+	      gettingData = false;
+	    }
+	    getCoords();
+	  };
+	
+	  function updateWeather(marker){
+	    map.setCenter(marker.getPosition());
+	    getCoords();
+	  }
+	
+	  // Get the coordinates from the Map bounds
+	  var getCoords = function() {
+	  	var bounds = map.getBounds();
+	   	var NE = bounds.getNorthEast();
+	    var SW = bounds.getSouthWest();
+	    getWeather(NE.lat(), NE.lng(), SW.lat(), SW.lng());
+	  };
+	  // Make the weather request
+	
+	  var getWeather = function(northLat, eastLng, southLat, westLng) {
+	    gettingData = true;
+	    var requestString = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + openWeatherMapKey
+	                        + "&lat=" + (northLat + southLat)/2
+	                        + "&lon=" + (eastLng + westLng)/2
+	                        + "&cnt=16";
+	    request = new XMLHttpRequest();
+	    request.onload = proccessResults;
+	    request.open("get", requestString, true);
+	    request.send();
+	  };
+	  
+	  // Take the JSON results and proccess them
+	  var proccessResults = function() {
+	    //console.log(this);
+	    var results = JSON.parse(this.responseText);
+	    console.log(results);
+	
+	    var temp = Math.round(9/5*(results.list[0].temp.day - 273) + 32, 1) + " &degF";
+	    var pic  = results.list[0].weather[0].icon;
+	
+	    document.getElementById("temp").innerHTML = "Current Temp: " + temp;
+	
+	
+	    document.getElementById("wthrpic1").src = "icons/" + results.list[0].weather[0].icon + ".png"
+	    document.getElementById("wthrpic2").src = "icons/" + results.list[1].weather[0].icon + ".png"
+	    document.getElementById("wthrpic3").src = "icons/" + results.list[2].weather[0].icon + ".png"
+	    document.getElementById("wthrpic4").src = "icons/" + results.list[3].weather[0].icon + ".png"
+	    document.getElementById("wthrpic5").src = "icons/" + results.list[4].weather[0].icon + ".png"
+	    document.getElementById("wthrpic6").src = "icons/" + results.list[5].weather[0].icon + ".png"
+	    document.getElementById("wthrpic7").src = "icons/" + results.list[6].weather[0].icon + ".png"
+	
+	    // if (results.list.length > 0) {
+	    //     resetData();
+	    //     for (var i = 0; i < results.list.length; i++) {
+	    //       geoJSON.features.push(jsonToGeoJson(results.list[i]));
+	    //     }
+	    //     drawIcons(geoJSON);
+	    // }
+	  };
+	
+	  var infowindow = new google.maps.InfoWindow();
+	  // For each result that comes back, convert the data to geoJSON
+	  var jsonToGeoJson = function (weatherItem) {
+	    var feature = {
+	      type: "Feature",
+	      properties: {
+	        city: weatherItem.name,
+	        weather: weatherItem.weather[0].main,
+	        temperature: weatherItem.main.temp,
+	        min: weatherItem.main.temp_min,
+	        max: weatherItem.main.temp_max,
+	        humidity: weatherItem.main.humidity,
+	        pressure: weatherItem.main.pressure,
+	        windSpeed: weatherItem.wind.speed,
+	        windDegrees: weatherItem.wind.deg,
+	        windGust: weatherItem.wind.gust,
+	        icon: "http://openweathermap.org/img/w/"
+	              + weatherItem.weather[0].icon  + ".png",
+	        coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]
+	      },
+	      geometry: {
+	        type: "Point",
+	        coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]
+	      }
+	    };
+	    // Set the custom marker icon
+	    map.data.setStyle(function(feature) {
+	      return {
+	        icon: {
+	          url: feature.getProperty('icon'),
+	          anchor: new google.maps.Point(25, 25)
+	        }
+	      };
+	    });
+	    // returns object
+	    return feature;
+	  };
+	  // Add the markers to the map
+	  var drawIcons = function (weather) {
+	     map.data.addGeoJson(geoJSON);
+	     // Set the flag to finished
+	     gettingData = false;
+	  };
+	  // Clear data layer and geoJSON
+	  var resetData = function () {
+	    geoJSON = {
+	      type: "FeatureCollection",
+	      features: []
+	    };
+	    map.data.forEach(function(feature) {
+	      map.data.remove(feature);
+	    });
+	  };
+	
+	  google.maps.event.addDomListener(window, 'load', initialize);
+	  google.maps.event.addDomListener(window, 'load', setWeather);
+	    });
+
+	    	
+
+	    
+	</script>
+	<script>
+		function makeCalendaerEvent(){
+			
+		}
+	</script>
+  
+</head>
+
+
+<body>
+	<div id="searchArea">
+		<div id="bodyWrapper">
+			<h1 id="logoHeader">TrailHub</h1>
+			<h2 class="searchInputHeaders">When?</h2>
+			<form id="time">
+				<select name="monthInput" id="monthInput">
+					<option selected="selected" disabled="disabled" id="disabledOption">month</option>
+					<option>January</option>
+					<option>February</option>
+					<option>March</option>
+					<option>April</option>
+					<option>May</option>
+					<option>June</option>
+					<option>July</option>
+					<option>August</option>
+					<option>September</option>
+					<option>October</option>
+					<option>November</option>
+					<option>December</option>
+				</select>
+				<input type="text" name="dayInput" id="dayInput" placeholder="day" class="dayAndYearInputs">
+				<input type="text" name="yearInput" id="yearInput" placeholder="year" class="dayAndYearInputs">
+			</form>
+			<h2 class="searchInputHeaders">Where?</h2>
+			<form><input type="text" id="location_input" name="whereInput" placeholder="search for a location"></form>
+			<div class="pt-triggers"><button type="button" id="goButton" onclick="initialize()">EXPLORE</button></div>
+		</div>
+	</div>
+	<div id="mapArea">
+		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute; margin: 0px; padding: 0px; border: 0px;"></div>
+		<input id="search-bar" placeholder="search for a location"></input>
+		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll; padding: 0px; border: 0px; margin: 0px;">
+		  <div style="height: 60px; width: 100%; background-color: #EDEDED; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative; padding-top: 10px; margin: 0px; color: #444444;">
+		    <h2 style="font-size: 24px; text-align: center; vertical-align: middle; line-height: 50px; margin-top: 0px !important;">CAMPGROUNDS</h2>
+		  </div>
+		</div>
+		<div id="weather-container"><p style="margin-bottom: 0px !important; margin-top: 10px !important;">Weekly forcast: </p>
+			<img class="wthrpic" id="wthrpic1" src="icons/03d.png" alt="" />
+		    <img class="wthrpic" id="wthrpic2" src="icons/03d.png" alt="" />
+		    <img class="wthrpic" id="wthrpic3" src="icons/03d.png" alt="" />
+		    <img class="wthrpic" id="wthrpic4" src="icons/03d.png" alt="" />
+		    <img class="wthrpic" id="wthrpic5" src="icons/03d.png" alt="" />
+		    <img class="wthrpic" id="wthrpic6" src="icons/03d.png" alt="" />
+		    <img class="wthrpic" id="wthrpic7" src="icons/03d.png" alt="" />
+		    <br/><p id="temp">Current Temp: 70 &degF<p></div>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/pagetransitions.js"></script>
+	
+</body>
+
+
+</html>

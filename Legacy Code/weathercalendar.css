@@ -1,0 +1,52 @@
+
+.weathercalendar {
+  position: absolute;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  color: #ffffff;
+}
+
+#banner {
+	background-color: #80B192;
+	height: 30px;
+}
+
+.home-btn,
+.home-btn:focus,
+.home-btn:visited {
+    background-color: #86C57E;
+    position: relative;
+    float: right;
+    color: #ffffff;
+ 	width: 80px;
+ 	height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 17px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	border: 0px;
+	line-height: 40px;
+}
+.home-btn:hover {
+    background-color: #6ea569;
+    color: #fff;
+}
+
+.home-btn:active {
+	background-color: #558153;
+    color: #fff;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+        body{
+          background-color: #ff00ff;
+          height: 200%;
+        }
+        .weathercalendar{
+          background-color: #ffffff;
+          position: fixed;
+          bottom:10px;
+          left:15px;
+          height: 200px;
+          width: 200px;
+        }
+    </style>
+
+    <script>
+      var OWMkey = "0a3275b14aa9bb2ad136e94fd73dff51";
+
+      var lat = 50;
+      var lon = 50;
+      var request = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + OWMkey + "&lat=" + lat + "&lon=" + lon + "&cnt=15";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", request, false);
+      xhr.send();
+
+      var data = JSON.parse(xhr.responseText);
+
+
+    </script>
+
+  </head>
+  <body>
+    <div class="weathercalendar"></div>
+  </body>
+
+</html>
