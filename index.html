@@ -34,7 +34,7 @@
 	    var request;
 	    var gettingData = false;
 	    var openWeatherMapKey = "0a3275b14aa9bb2ad136e94fd73dff51"
-	    var coor_x; 
+	    var coor_x;
 	    var coor_y;
 
 	    function initialize() {
@@ -61,7 +61,7 @@
 
 	    var icons = {
 	          hiking: {
-	            icon: 'marker_smallest_v2.png'
+	            icon: 'icons/marker_smallest_v2.png'
 	          }
 	        };
 
@@ -94,7 +94,7 @@
 	        //
 	        var time_info = document.getElementById("time");
 	        var year = time_info[2].value;
-	        var day = time_info[1].value; 
+	        var day = time_info[1].value;
 	        var month = time_info[0].selectedOptions[0].value;
 	        var dat = new Date('1 ' + month + ' 1999');
 	        var number_month = "";
