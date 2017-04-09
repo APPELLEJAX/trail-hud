@@ -74,6 +74,9 @@ html, body {
  	background: -webkit-linear-gradient(#77EA89, #3B9E6A);
 	background:    -moz-linear-gradient(#77EA89, #3B9E6A);
  	background:         linear-gradient(#77EA89, #3B9E6A);
+ 	background-image: url("path.jpeg");
+ 	background-position: center;
+ 	background-size: cover;
  	width: 100%;
  	height: 100%;
  	border: 0px;
@@ -93,18 +96,34 @@ html, body {
 #bodyWrapper {
 	position:absolute;
     width:547px;
-    height:449px;
+    height:512px;
     left:50%;
     top:50%;
     margin-left:-273px;
-    margin-top:-224px;
+    margin-top:-256px;
 }
 
 #logoHeader {
 	font-family: 'Roboto', sans-serif;
 	font-size: 64px;
 	text-align: center;
-	color: rgba(255, 255, 255, 1.0);
+	color: rgba(255, 255, 255, 0.9);
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.20);
+}
+
+h3 {
+	color: #444444;
+	margin-bottom: 7px;
+	margin-top: 20px;
+}
+
+#tagline {
+	font-family: 'Roboto', sans-serif;
+	font-size: 36px;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.7);
 	margin-top: 0px;
 	margin-bottom: 50px;
 	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.20);
@@ -114,9 +133,9 @@ html, body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 48px;
 	text-align: left;
-	color: rgba(255, 255, 255, 0.6);
+	color: rgba(255, 255, 255, 0.8);
 	margin-top: 0px;
-	margin-bottom: -15px;
+	margin-bottom: 0px;
 	margin-left: 0px;
 	margin-right: 0px;
 	text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.20);
@@ -135,17 +154,17 @@ input {
     font-size: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    color: #444444;
+    color: #ffffff;
     -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
-	background-color: #C7EAD8;
+	background-color: rgba(50, 50, 50, 0.8);
 	transition: all 0.3s ease 0s;
 }
 
 input:focus {
 	outline: none;
-	background-color: rgba(255, 255, 255, 1.0);
+	background-color: rgba(33, 33, 33, 0.9);
 }
 
 select {
@@ -156,10 +175,10 @@ select {
     -khtml-border-radius: 5px; /* KHTML */
     border-radius: 5px; /* CSS3 */
     border: 0px;
-    background-color: #C7EAD8;
+    background-color: rgba(50, 50, 50, 0.8);
     font-size: 20px;
     padding-left: 20px;
-    color: #444444;
+    color: #ffffff;
     -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
@@ -174,7 +193,20 @@ select {
 
 select:focus {
 	outline: none;
-	background-color: #ffffff;
+	background-color: rgba(33, 33, 33, 0.9);
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: AAAAAA;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #AAAAAA;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #AAAAAA;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #AAAAAA;
 }
 
 .dayAndYearInputs {
@@ -197,8 +229,8 @@ select:focus {
     margin-top: 60px;
     margin-left: 180px;
     font-weight: bold;
-    background-color: rgba(0,0,0,0.4);
-    color: #4EB674;
+    background-color: rgba(255,255,255,1.0);
+    color: #80A2B6;
     -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
@@ -206,19 +238,13 @@ select:focus {
 }
 
 #goButton:hover {
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(240,240,240,1,0);
 }
 
 #goButton:active {
-	background-color:rgba(0,0,0,0.8);
+	background-color: rgba(225,225,225,1.0);
 }
 
 #disabledOption {
 	color: #AAAAAA;
-}
-
-h3 {
-	color: #444444;
-	margin-bottom: 7px;
-	margin-top: 20px;
 }

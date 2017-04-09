@@ -14,9 +14,9 @@
 		    $("#weather-container").hide();
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
-		        $("#mapArea").fadeIn(600);
+		        $("#mapArea").fadeIn(1000);
 				google.maps.event.trigger(map, 'resize');
-		        $("#weather-container").fadeIn(600);
+		        $("#weather-container").fadeIn(1000);
 		    });
 		});
 	</script>
@@ -47,101 +47,8 @@
 	      	var mapOptions = {
 	        	zoom: 10,
 	        	center: pyrmont,
-		        styles: [
-		                  {
-		                    "featureType": "landscape",
-		                    "stylers": [
-		                      {
-		                        "color": "#493548"
-		                      },
-		                      {
-		                        "weight": 3.5
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "poi",
-		                    "stylers": [
-		                      {
-		                        "color": "#4b4e6d"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "poi",
-		                    "elementType": "labels.icon",
-		                    "stylers": [
-		                      {
-		                        "visibility": "off"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "poi",
-		                    "elementType": "labels.text",
-		                    "stylers": [
-		                      {
-		                        "visibility": "off"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "road",
-		                    "stylers": [
-		                      {
-		                        "color": "#6a8d92"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "road.arterial",
-		                    "elementType": "labels",
-		                    "stylers": [
-		                      {
-		                        "visibility": "off"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "road.highway",
-		                    "elementType": "labels",
-		                    "stylers": [
-		                      {
-		                        "visibility": "off"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "road.local",
-		                    "stylers": [
-		                      {
-		                        "visibility": "off"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "transit",
-		                    "stylers": [
-		                      {
-		                        "color": "#4b4e6d"
-		                      }
-		                    ]
-		                  },
-		                  {
-		                    "featureType": "water",
-		                    "stylers": [
-		                      {
-		                        "color": "#6ca6c1"
-		                      },
-		                      {
-		                        "saturation": 40
-		                      },
-		                      {
-		                        "lightness": 40
-		                      }
-		                    ]
-		                  }
-		          ]};
+	        	mapTypeId: 'satellite',
+		        };
 
 		      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -191,7 +98,7 @@
 	        var end_time = year + number_month + day + "T200000Z";
 
 	        if(start_time !== "T190000Z"){
-	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">+ EVENT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><div style="width: 60%;"><h3>' + place.name + '</h3><i>' + place.vicinity + '</i><br/><b>Rating: ' + place.rating + ' out of 5</b></div></div>');
+	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">+ EVENT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><div style="width: 60%;"><h3>' + place.name + '</h3>' + place.vicinity + '<br/><i>Rating: ' + place.rating + ' out of 5</i></div></div>');
 	    	}
 
 	        //
@@ -371,6 +278,7 @@
 	<div id="searchArea">
 		<div id="bodyWrapper">
 			<h1 id="logoHeader">TrailHub</h1>
+			<h3 id="tagline">Find your own path!</h3>
 			<h2 class="searchInputHeaders">When?</h2>
 			<form id="time">
 				<select name="monthInput" id="monthInput">
