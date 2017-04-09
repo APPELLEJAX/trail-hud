@@ -14,9 +14,9 @@
 		    $("#weather-container").hide();
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
-		        $("#mapArea").fadeIn(1000);
-						google.maps.event.trigger(map,'resize');
-		        $("#weather-container").fadeIn(1000);
+		        $("#mapArea").fadeIn(600);
+				google.maps.event.trigger(map, 'resize');
+		        $("#weather-container").fadeIn(600);
 		    });
 		});
 	</script>
@@ -45,7 +45,7 @@
 		function start(map, geoJSON, request, gettingData, openWeatherMapKey, coor_x, coor_y) {
 	    	var pyrmont = {lat: coor_x, lng:  coor_y};
 	      	var mapOptions = {
-	        	zoom: 12,
+	        	zoom: 10,
 	        	center: pyrmont,
 		        styles: [
 		                  {
@@ -191,7 +191,7 @@
 	        var end_time = year + number_month + day + "T200000Z";
 
 	        if(start_time !== "T190000Z"){
-	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">SUBMIT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>' + place.name + '</h3>' + place.vicinity + '<br/>rating: ' + place.rating + ' out of 5</div>');
+	        	list_item.innerHTML += ('<a class="home-btn" href="http://www.google.com/calendar/event?action=TEMPLATE&amp;text=Camping%20Trip%20with%20TrailHub%20&amp;dates='+start_time+'/'+end_time+'&amp;details=We\'re%20going%20camping%20at%20' + place.name + '.%20Thanks%20to%20Trail-hub&amp;location='+place.vicinity+'&amp;trp=false&amp;sprop=http%3A%2F%2Fendzonerealty.com%2F&amp;sprop=name:EndZoneRealty.com" target="_blank">+ EVENT</a><div class="placelistitem" onClick="updateWeather(`+marker+`)"><div style="width: 60%;"><h3>' + place.name + '</h3><i>' + place.vicinity + '</i><br/><b>Rating: ' + place.rating + ' out of 5</b></div></div>');
 	    	}
 
 	        //
@@ -393,14 +393,14 @@
 			</form>
 			<h2 class="searchInputHeaders">Where?</h2>
 			<form><input type="text" id="location_input" name="whereInput" placeholder="search for a location"></form>
-			<div class="pt-triggers"><button type="button" id="goButton" onclick="initialize()">EXPLORE</button></div>
+			<div><button type="button" id="goButton" onclick="initialize()">EXPLORE</button></div>
 		</div>
 	</div>
 	<div id="mapArea">
 		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
-		<input id="search-bar"></input>
-		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
-		  <div style="height: 60px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative; padding-top: 10px;">
+		<input id="search-bar" placeholder="search for a location"></input>
+		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll; padding: 0px; border: 0px; margin: 0px;">
+		  <div style="height: 60px; width: 100%; background-color: #EDEDED; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative; padding-top: 10px; color: #444444;">
 		    <h2 style="font-size: 24px; text-align: center; vertical-align: middle; line-height: 50px; margin-top: 0px !important;">CAMPGROUNDS</h2>
 		  </div>
 		</div>
