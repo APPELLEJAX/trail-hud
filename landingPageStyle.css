@@ -229,20 +229,24 @@ select:focus {
     margin-top: 60px;
     margin-left: 180px;
     font-weight: bold;
-    background-color: rgba(255,255,255,1.0);
+    background-color: #FFFFFF;
     color: #80A2B6;
     -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
 	transition: all 0.3s ease 0s;
+	outline: none;
 }
 
 #goButton:hover {
-	background-color: rgba(240,240,240,1,0);
+	color: #406286;
+	outline: none;
 }
 
 #goButton:active {
-	background-color: rgba(225,225,225,1.0);
+	color: #406286;
+	background-color: #DDDDDD;
+	outline: none;
 }
 
 #disabledOption {
