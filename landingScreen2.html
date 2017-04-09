@@ -13,10 +13,18 @@
 		    $("#mapArea").hide();
 		    $("#weather-container").hide();
 			$("#goButton").click(function(){
-		        $("#searchArea").slideUp(500);
-		        $("#mapArea").fadeIn(1000);
-		        $("#weather-container").fadeIn(1000);
-				google.maps.event.trigger(map, 'resize');
+		        var monthInputVal    = document.getElementById("monthInput");
+		        var dayInputVal      = document.getElementById("dayInput");
+		        var yearInputVal     = document.getElementById("yearInput");
+		        var locationInputVal = document.getElementById("location_input");
+		        if(monthInputVal!="" && dayInputVal!="" && yearInputVal!="" && locationInputVal!="") {
+		        	if(true) {
+		        		$("#searchArea").slideUp(500);
+		        		$("#mapArea").fadeIn(1000);
+		        		$("#weather-container").fadeIn(1000);
+						google.maps.event.trigger(map, 'resize');
+					}
+				}
 		    });
 		});
 	</script>
@@ -297,8 +305,8 @@
 					<option>November</option>
 					<option>December</option>
 				</select>
-				<input type="text" name="dayInput" id="dayInput" placeholder="day" class="dayAndYearInputs">
-				<input type="text" name="yearInput" id="yearInput" placeholder="year" class="dayAndYearInputs">
+				<input type="number" maxlength="2" name="dayInput" id="dayInput" placeholder="day" class="dayAndYearInputs">
+				<input type="number" maxlength="4" name="yearInput" id="yearInput" placeholder="year" class="dayAndYearInputs">
 			</form>
 			<h2 class="searchInputHeaders">Where?</h2>
 			<form><input type="text" id="location_input" name="whereInput" placeholder="search for a location"></form>
