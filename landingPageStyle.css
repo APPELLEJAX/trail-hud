@@ -47,9 +47,9 @@ html, body {
 	padding-left: 20px;
 	padding-right: 20px;
     position: fixed;
-    margin-left: 20.5%;
+    margin-left: 9.5%;
     top: 10px;
-    width: 45%;
+    width: 40.5%;
     color: #444444;
     background-color: rgba(255,255,255,0.85);
     transition: all 0.3s ease 0s;
@@ -222,7 +222,7 @@ select:focus {
 	margin-left:10px;
 }
 
-#goButton {
+#goButton, #backButton {
 	width: 186;
 	height: 50;
 	text-align: center;
@@ -246,15 +246,21 @@ select:focus {
 	outline: none;
 }
 
-#goButton:hover {
+#goButton:hover, #backButton:hover {
 	color: #406286;
 	outline: none;
 }
 
-#goButton:active {
+#goButton:active, #backButton:active {
 	color: #406286;
 	background-color: #DDDDDD;
 	outline: none;
+}
+
+#backButton {
+	margin-top: 10px;
+	margin-left: 51%;
+	position: fixed;
 }
 
 #disabledOption {
