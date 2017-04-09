@@ -39,8 +39,11 @@
 
 	    			coor_x = Math.round(data.results[0].geometry.location.lat * 100) / 100;
 	    			coor_y = Math.round(data.results[0].geometry.location.lng * 100) / 100;
+	    			start(map, geoJSON, request, gettingData, openWeatherMapKey, coor_x, coor_y);
+	    		});
 
-	    			var pyrmont = {lat: coor_x, lng:  coor_y};
+		function start(map, geoJSON, request, gettingData, openWeatherMapKey, coor_x, coor_y) {
+	    	var pyrmont = {lat: coor_x, lng:  coor_y};
 	      	var mapOptions = {
 	        	zoom: 12,
 	        	center: pyrmont,
@@ -142,7 +145,7 @@
 
 		      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-		      var icons = {
+	    var icons = {
 	          hiking: {
 	            icon: 'marker_smallest_v2.png'
 	          }
@@ -352,11 +355,7 @@
 
 	  google.maps.event.addDomListener(window, 'load', initialize);
 	  google.maps.event.addDomListener(window, 'load', setWeather);
-	    });
-
-	    	
-
-	    
+	}
 
 	</script>
 	<script>
