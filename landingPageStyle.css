@@ -16,20 +16,18 @@ html, body {
 }
 
 #weather-container{
-	position: fixed;
-	left: 20px;
-    bottom: 25px;
+	position: absolute;
+	left: 16px;
+    bottom: 30;
     height: 150px;
     width: 350px;
-
     align-content: center;
-
-    color: #eeffee;
+    color: #ffffff;
     font-size: 20pt;
     text-align: center;
     text-shadow: #000000;
-
-    background-color: rgba(100, 120, 100, .8);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .60);
 }
 
 .wthrpic{
@@ -41,9 +39,9 @@ html, body {
 	padding-left: 20px;
 	padding-right: 20px;
     position: fixed;
-    margin-left: 33.5%;
+    margin-left: 20.5%;
     top: 10px;
-    width: 32%;
+    width: 45%;
     color: #444444;
     background-color: rgba(255,255,255,0.85);
     transition: all 0.3s ease 0s;
@@ -55,9 +53,11 @@ html, body {
 
 .placelistitem{
     font-family: 'Roboto', sans-serif;
-    margin-left: 10px;
-    padding-bottom: 5px;
-    border-bottom:  1px solid #003300;
+    margin-left: 20px;
+    padding-bottom: 25px;
+    border-bottom:  1px solid #DDDDDD;
+    margin-bottom: 0px;
+    color: #888888;
 }
 
 .placelistitem button{
@@ -131,7 +131,7 @@ input {
     border-radius: 5px; /* CSS3 */
     behavior:url("border-radius.htc");
     border: 0px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; 
     font-size: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -178,7 +178,7 @@ select:focus {
 }
 
 .dayAndYearInputs {
-	width:120;
+	width: 120;
 	margin-left:10px;
 }
 
@@ -217,6 +217,8 @@ select:focus {
 	color: #AAAAAA;
 }
 
-#calendarButton {
-
+h3 {
+	color: #444444;
+	margin-bottom: 7px;
+	margin-top: 20px;
 }

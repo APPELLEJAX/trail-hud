@@ -14,9 +14,9 @@
 		    $("#weather-container").hide();
 			$("#goButton").click(function(){
 		        $("#searchArea").slideUp(500);
-		        $("#mapArea").fadeIn(1000);
-						google.maps.event.trigger(map,'resize');
-		        $("#weather-container").fadeIn(1000);
+		        $("#mapArea").fadeIn(600);
+		        google.maps.event.trigger(map, 'resize');
+		        $("#weather-container").fadeIn(600);
 		    });
 		});
 	</script>
@@ -42,7 +42,7 @@
 
 	    			var pyrmont = {lat: coor_x, lng:  coor_y};
 	      	var mapOptions = {
-	        	zoom: 12,
+	        	zoom: 10,
 	        	center: pyrmont,
 		        styles: [
 		                  {
@@ -147,7 +147,7 @@
 	            icon: 'marker_smallest_v2.png'
 	          }
 	        };
-
+	
 	          infowindow = new google.maps.InfoWindow();
 	          var service = new google.maps.places.PlacesService(map);
 	            service.nearbySearch({
@@ -155,10 +155,10 @@
 	            radius: 500000,
 	            type: ['campground']
 	          }, callback);
-
+	
 	    // Add interaction listeners to make weather requests
 	    // Sets up and populates the info window with details
-
+	
 	    function callback(results, status) {
 	        console.log(results);
 	        if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -167,13 +167,13 @@
 	          }
 	        }
 	      }
-
+	
 	    function createMarker(place) {
 	        var placeLoc = place.geometry.location;
 	        var list_item = document.getElementById("list");
 	//        list_item.innerHTML += (`<button class="home-btn">Add to Calendar</button><div class="placelistitem" onClick="updateWeather(`+marker+`)"><h3>` + place.name +"</h3>" + place.vicinity + "<br/>rating: " + place.rating + ` out of 5</div>`);
-
-
+	
+	
 	        //
 	        var time_info = document.getElementById("time");
 	        var year = time_info[2].value;
@@ -192,21 +192,21 @@
 	    	}
 
 	        //
-
-
+	
+	
 	        var marker = new google.maps.Marker({
 	          map: map,
 	          icon: icons['hiking'].icon,
 	          position: place.geometry.location,
 	        });
-
+	
 	        google.maps.event.addListener(marker, 'click', function() {
 	          infowindow.setContent(place.name);
 	          infowindow.open(map, this);
 	          updateWeather(marker);
 	        });
 	      }
-
+	
 	    map.data.addListener('click', function(event) {
 	      // infowindow.setContent(
 	      //  "<img src=" + event.feature.getProperty("icon") + ">"
@@ -226,13 +226,13 @@
 	      //   });
 	      // infowindow.open(map);
 	    });
-
+	
 	  }
-
+	
 	  function setWeather(){
 	    getCoords();
 	  }
-
+	
 	  var checkIfDataRequested = function() {
 	    // Stop extra requests being sent
 	    while (gettingData === true) {
@@ -241,21 +241,21 @@
 	    }
 	    getCoords();
 	  };
-
+	
 	  function updateWeather(marker){
 	    map.setCenter(marker.getPosition());
 	    getCoords();
 	  }
-
+	
 	  // Get the coordinates from the Map bounds
 	  var getCoords = function() {
-	    var bounds = map.getBounds();
-	    var NE = bounds.getNorthEast();
+	  	var bounds = map.getBounds();
+	   	var NE = bounds.getNorthEast();
 	    var SW = bounds.getSouthWest();
 	    getWeather(NE.lat(), NE.lng(), SW.lat(), SW.lng());
 	  };
 	  // Make the weather request
-
+	
 	  var getWeather = function(northLat, eastLng, southLat, westLng) {
 	    gettingData = true;
 	    var requestString = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + openWeatherMapKey
@@ -267,18 +267,19 @@
 	    request.open("get", requestString, true);
 	    request.send();
 	  };
+	  
 	  // Take the JSON results and proccess them
 	  var proccessResults = function() {
 	    //console.log(this);
 	    var results = JSON.parse(this.responseText);
 	    console.log(results);
-
+	
 	    var temp = Math.round(9/5*(results.list[0].temp.day - 273) + 32, 1) + " &degF";
 	    var pic  = results.list[0].weather[0].icon;
-
+	
 	    document.getElementById("temp").innerHTML = "Current Temp: " + temp;
-
-
+	
+	
 	    document.getElementById("wthrpic1").src = "icons/" + results.list[0].weather[0].icon + ".png"
 	    document.getElementById("wthrpic2").src = "icons/" + results.list[1].weather[0].icon + ".png"
 	    document.getElementById("wthrpic3").src = "icons/" + results.list[2].weather[0].icon + ".png"
@@ -286,7 +287,7 @@
 	    document.getElementById("wthrpic5").src = "icons/" + results.list[4].weather[0].icon + ".png"
 	    document.getElementById("wthrpic6").src = "icons/" + results.list[5].weather[0].icon + ".png"
 	    document.getElementById("wthrpic7").src = "icons/" + results.list[6].weather[0].icon + ".png"
-
+	
 	    // if (results.list.length > 0) {
 	    //     resetData();
 	    //     for (var i = 0; i < results.list.length; i++) {
@@ -295,7 +296,7 @@
 	    //     drawIcons(geoJSON);
 	    // }
 	  };
-
+	
 	  var infowindow = new google.maps.InfoWindow();
 	  // For each result that comes back, convert the data to geoJSON
 	  var jsonToGeoJson = function (weatherItem) {
@@ -349,7 +350,7 @@
 	      map.data.remove(feature);
 	    });
 	  };
-
+	
 	  google.maps.event.addDomListener(window, 'load', initialize);
 	  google.maps.event.addDomListener(window, 'load', setWeather);
 	    });
@@ -357,14 +358,13 @@
 	    	
 
 	    
-
 	</script>
 	<script>
 		function makeCalendaerEvent(){
-
+			
 		}
 	</script>
-
+  
 </head>
 
 
@@ -398,10 +398,10 @@
 		</div>
 	</div>
 	<div id="mapArea">
-		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute;"></div>
-		<input id="search-bar"></input>
-		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll;">
-		  <div style="height: 60px; width: 100%; background-color: #A1E887; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative; padding-top: 10px;">
+		<div id="map-canvas" style="width: 66.6%; float: left; position: absolute; margin: 0px; padding: 0px; border: 0px;"></div>
+		<input id="search-bar" placeholder="search for a location"></input>
+		<form action="makeCalendarEvent" id="list" style="width: 33.3%; height: 100%; float: right; position: relative; overflow: scroll; padding: 0px; border: 0px; margin: 0px;">
+		  <div style="height: 60px; width: 100%; background-color: #EDEDED; font-family: 'Roboto', sans-serif; font-size: 20px; position: relative; padding-top: 10px; margin: 0px; color: #444444;">
 		    <h2 style="font-size: 24px; text-align: center; vertical-align: middle; line-height: 50px; margin-top: 0px !important;">CAMPGROUNDS</h2>
 		  </div>
 		</div>
@@ -415,11 +415,11 @@
 		    <img class="wthrpic" id="wthrpic7" src="icons/03d.png" alt="" />
 		    <br/><p id="temp">Current Temp: 70 &degF<p></div>
 	</div>
-
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="js/jquery.dlmenu.js"></script>
 	<script src="js/pagetransitions.js"></script>
-
+	
 </body>
 
 

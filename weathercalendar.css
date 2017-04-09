@@ -1,9 +1,9 @@
 
 .weathercalendar {
   position: absolute;
-  bottom: 10px;
-  left:10px;
-  color: #bbffaa;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  color: #ffffff;
 }
 
 #banner {
@@ -13,29 +13,40 @@
 
 .home-btn,
 .home-btn:focus,
-.home-btn:active,
 .home-btn:visited {
-    background: transparent;
+    background-color: #86C57E;
     position: relative;
     float: right;
-    border-color: #6a8d92;
-    color: #6a8d92;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 19px;
+    color: #ffffff;
+ 	width: 80px;
+ 	height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 17px;
     margin-top: 30px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     text-transform: uppercase;
-    border-radius: 3px;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    -moz-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	box-shadow:0 0 15px 0 rgba(0,0,0,0.20);
+	border: 0px;
+	line-height: 40px;
 }
 .home-btn:hover {
-    background-color: #6a8d92 ;
+    background-color: #6ea569;
+    color: #fff;
+}
+
+.home-btn:active {
+	background-color: #558153;
     color: #fff;
 }
